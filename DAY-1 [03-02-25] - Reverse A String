@@ -1,0 +1,18 @@
+PROBLEM TITLE : Reverse a String
+PROBLEM DIFFICULTY : Basic
+PLATFORM NAME : GeeksForGeeks
+PROBLEM LINK : https://www.geeksforgeeks.org/problems/reverse-a-string/1
+
+SOLUTION : 
+class Solution 
+{
+    public static String reverseString(String s) 
+    {
+        return new StringBuilder(s).reverse().toString();
+    }
+}
+
+APPROACH :
+Here, I have used a StringBuilder class and converted the existing string into StringBuilder.
+After that, I have used the functions of StringBuilder to reverse the contents and then convert it into String.
+After doing all that on the same line, I'm returning it.
