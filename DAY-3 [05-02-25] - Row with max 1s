@@ -29,3 +29,6 @@ class Solution {
 }
 
 APPROACH :
+Here, I have used Brute Force approach to solve the problem which have time complexity of O(n*m).
+We are counting 1 for each row using currCount and if it's greater than count then we'll replace the value of count with currCount and set the row's index to ans.
+At last, we're returning 'ans' which contains the index of the row with maximum 1's.
