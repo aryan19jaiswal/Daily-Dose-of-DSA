@@ -1,0 +1,44 @@
+PROBLEM TITLE : Longest Consecutive Subsequence
+PROBLEM DIFFICULTY : Medium
+PLATFORM NAME : GeeksForGeeks
+PROBLEM LINK : https://www.geeksforgeeks.org/problems/longest-consecutive-subsequence2449/1
+
+SOLUTION : 
+
+class Solution 
+{
+    public int longestConsecutive(int[] arr) 
+    {
+        int maxCount = 1;
+        int subCount = 1;
+        
+        Arrays.sort(arr);
+        
+        for(int i=1; i<arr.length; i++)
+        {
+            if (arr[i] == arr[i - 1]) 
+            {
+                // Ignore duplicate numbers, do not reset count
+                continue;
+            }
+            else if(arr[i-1]+1 == arr[i])
+            {
+                subCount++;
+            }
+            else
+            {
+                subCount = 1;
+            }
+            maxCount = Math.max(subCount, maxCount);
+        }
+        
+        return maxCount;
+    }
+}
+
+APPROACH :
+Here, I have used 2 variables, one for counting current streak and other for counting the maximum streak.
+In case of duplicate elements, we'll just continue the iteration to next without doing anything.
+If value at current index is 1 greater than value at previous index, then we'll increase the subCount.
+And if not so, then subCount will be reset to 1.
+And at the end of each iteration, we'll update maxCount with the value which is maximum between subCount and maxCount. 
