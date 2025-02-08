@@ -1,0 +1,18 @@
+PROBLEM TITLE : Kth Smallest
+PROBLEM DIFFICULTY : Medium
+PLATFORM NAME : GeeksForGeeks
+PROBLEM LINK : https://www.geeksforgeeks.org/problems/kth-smallest-element5635/1
+SOLUTION : 
+
+class Solution 
+{
+    public static int kthSmallest(int[] arr, int k) 
+    {
+        Arrays.sort(arr);
+        return arr[k-1];
+    }
+}
+
+APPROACH :
+First, we'll sort the array.
+Then, we'll return the element at the Kth-1 index.
