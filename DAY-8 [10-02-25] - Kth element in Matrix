@@ -1,0 +1,30 @@
+PROBLEM TITLE : Kth element in Matrix
+PROBLEM DIFFICULTY : Medium 
+PLATFORM NAME : GeeksForGeeks
+PROBLEM LINK : https://www.geeksforgeeks.org/problems/kth-element-in-matrix/1
+
+SOLUTION : 
+
+class Solution
+{
+	 public static int kthSmallest(int[][] mat, int n, int k) 
+	 {
+        int[] elements = new int[n * n];
+        int a = 0;
+
+        // Storing the elements in a 1D array
+        for (int i = 0; i < n; i++) 
+        {
+            for (int j = 0; j < n; j++) 
+            {
+                elements[a] = mat[j][i]; 
+                a++;
+            }
+        }
+
+        Arrays.sort(elements);
+
+        // Return the k-th smallest element
+        return elements[k - 1]; 
+    }
+}
