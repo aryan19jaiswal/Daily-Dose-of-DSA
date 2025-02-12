@@ -1,0 +1,80 @@
+PROBLEM TITLE : First negative in every window of size k
+PROBLEM DIFFICULTY : Medium
+PLATFORM NAME : GeeksForGeeks
+PROBLEM LINK : https://www.geeksforgeeks.org/problems/first-negative-integer-in-every-window-of-size-k3345/1
+
+SOLUTION : 
+
+APPROACH-1: (My First Thought) [Time Complexity = O(n.k), Space Complexity = O(n)]
+class Solution
+{
+    static List<Integer> FirstNegativeInteger(int arr[], int k) 
+        {
+            List<Integer> list = new ArrayList<>();
+            
+            for(int i=0; i<=arr.length-k; i++)
+            {
+                int j = i;
+                int num = 0;
+                
+                while(j < i+k)
+                {
+                    if(arr[j] < 0)
+                    {
+                        num = arr[j];
+                        break;
+                    }
+                    j++;
+                }
+                
+                list.add(num);
+            }
+            return list;
+        }
+}
+
+
+APPROACH-2: (Optimized Approach) [Time Complexity = O(n), Space Complexity = O(n)]
+class Solution 
+{
+    public static List<Integer> FirstNegativeInteger(int arr[], int k) 
+    {
+        List<Integer> result = new ArrayList<>();
+        Deque<Integer> deque = new LinkedList<>();
+        
+        // Process the first window
+        for (int i = 0; i < k; i++) 
+        {
+            if (arr[i] < 0) 
+            {
+                deque.addLast(i); // Store the index of the negative number
+            }
+        }
+        
+        // Traverse through the remaining array
+        for (int i = k; i <= arr.length; i++)
+        {
+            // Add the first negative integer from deque (or 0 if deque is empty)
+            if (!deque.isEmpty())
+            {
+                result.add(arr[deque.peekFirst()]);
+            } else
+            {
+                result.add(0);
+            }
+            
+            // Remove elements that are out of this window
+            if (!deque.isEmpty() && deque.peekFirst() <= i - k)
+            {
+                deque.pollFirst();
+            }
+            
+            // Add the current element (if negative) to the deque
+            if (i < arr.length && arr[i] < 0) 
+            {
+                deque.addLast(i);
+            }
+        }
+        return result;
+    }
+}
