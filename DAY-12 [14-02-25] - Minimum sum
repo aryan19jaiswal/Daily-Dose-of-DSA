@@ -1,0 +1,62 @@
+PROBLEM TITLE : Minimum sum
+PROBLEM DIFFICULTY : Medium
+PLATFORM NAME : GeeksForGeeks
+PROBLEM LINK : https://www.geeksforgeeks.org/problems/minimum-sum4058/1
+
+SOLUTION : [Time Complexity: O(n.logn), Space Complexity: O(n)]
+
+class Solution 
+{
+    static String addStrings(String num1, String num2) 
+    {
+        StringBuilder result = new StringBuilder();
+        int carry = 0, i = num1.length() - 1, j = num2.length() - 1;
+
+        while (i >= 0 || j >= 0 || carry > 0) 
+        {
+            int sum = carry;
+            if (i >= 0) sum += num1.charAt(i--) - '0';
+            if (j >= 0) sum += num2.charAt(j--) - '0';
+
+            result.append(sum % 10); // Append last digit of sum
+            carry = sum / 10;        // Carry for next iteration
+        }
+        
+        String finalResult = result.reverse().toString();
+        return finalResult.replaceFirst("^0+(?!$)", "");
+    }
+
+    static String minSum(int[] arr) 
+    {
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+
+        for (int num : arr)
+        {
+            pq.add(num);
+        }
+
+        StringBuilder min1 = new StringBuilder();
+        StringBuilder min2 = new StringBuilder();
+
+        while (!pq.isEmpty())
+        {
+            min1.append(pq.poll());
+            if (!pq.isEmpty()) 
+            {
+                min2.append(pq.poll());
+            }
+        }
+        return addStrings(min1.toString(), min2.toString());
+    }
+}
+
+APPROACH :
+Here, I have used a Min-Heap (PriorityQueue) to store the array elements in ascending order.
+After that, I have formed two numbers (min1 and min2) by picking elements alternately from the heap.
+At the end, I have used the addStrings method to compute their sum and returned the final result.
+
+
+
+
+
+
