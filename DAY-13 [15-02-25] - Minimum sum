@@ -1,0 +1,39 @@
+PROBLEM TITLE : Merge k Sorted Arrays
+PROBLEM DIFFICULTY : Medium
+PLATFORM NAME : GeeksForGeeks
+PROBLEM LINK : https://www.geeksforgeeks.org/problems/merge-k-sorted-arrays/1
+
+SOLUTION : [Time Complexity: O(K * N log(K * N)), Space Complexity: O(K * N)]
+
+class Solution 
+{
+    public static ArrayList<Integer> mergeKArrays(int[][] arr,int K) 
+    {
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        
+        for(int i=0; i<K; i++)
+        {
+            for(int j=0; j<arr[i].length; j++)
+            {
+                pq.add(arr[i][j]);
+            }
+        }
+        
+        ArrayList<Integer> ans = new ArrayList<>();
+        while(!pq.isEmpty())
+        {
+            ans.add(pq.poll());
+        }
+        
+        return ans;
+    }
+}
+
+APPROACH :
+Here, I have used a PriorityQueue to store the array elements in ascending order.
+Then, until my Priority Queue becomes empty, I have removed elements from them and added to my ArrayList 'ans'.
+
+
+
+
+
