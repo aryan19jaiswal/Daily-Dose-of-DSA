@@ -1,0 +1,40 @@
+PROBLEM TITLE : Gas Station
+PROBLEM DIFFICULTY : Medium
+PLATFORM NAME : GeeksForGeeks
+PROBLEM LINK : https://www.geeksforgeeks.org/problems/circular-tour-1587115620/1
+
+SOLUTION : [Time Complexity: O(n(logn), Space Complexity: O(n)]
+
+class Solution 
+{
+    public int startStation(int[] gas, int[] cost) 
+    {
+        int totalGas = 0;
+        int totalCost = 0;
+        int currentGas = 0;
+        int startIndex = 0;
+
+        for (int i = 0; i < gas.length; i++) 
+        {
+            totalGas += gas[i];
+            totalCost += cost[i];
+            currentGas += gas[i] - cost[i];
+
+            // If currentGas drops below 0, we can't start the journey from startIndex to i
+            if (currentGas < 0)
+            {
+                currentGas = 0;
+                startIndex = i + 1;
+                
+            }
+        }
+
+        // If the total gas available is less than the total cost, it's impossible to complete the circuit
+        if (totalGas < totalCost) 
+        {
+            return -1;
+        }
+
+        return startIndex;
+    }
+}
