@@ -3,7 +3,7 @@ PROBLEM DIFFICULTY : Medium
 PLATFORM NAME : GeeksForGeeks
 PROBLEM LINK : https://www.geeksforgeeks.org/problems/job-sequencing-problem-1587115620/1
 
-SOLUTION : [Time Complexity: O(n(logn), Space Complexity: O(n)]
+SOLUTION : [Time Complexity: O(n(logn)), Space Complexity: O(n)]
 
 class Pair 
 {
