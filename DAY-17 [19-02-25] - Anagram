@@ -1,0 +1,53 @@
+PROBLEM TITLE : Anagram
+PROBLEM DIFFICULTY : Easy
+PLATFORM NAME : GeeksForGeeks
+PROBLEM LINK : https://www.geeksforgeeks.org/problems/anagram-1587115620/1
+
+SOLUTION : [Time Complexity: O(n), Space Complexity: O(1)]
+
+class Solution 
+{
+    public static boolean areAnagrams(String s1, String s2) 
+    {
+
+                if(s1.length() != s2.length())
+        {
+            return false;
+        }
+
+        HashMap<Character, Integer> hm = new HashMap<>();
+
+        for(int i=0; i<s1.length(); i++)
+        {
+            if(hm.containsKey(s1.charAt(i)))
+            {
+                hm.put(s1.charAt(i), hm.get(s1.charAt(i))+1);
+            }
+            else
+            {
+                hm.put(s1.charAt(i), 1);
+            }
+        }
+
+        for(int i=0; i<s2.length(); i++)
+        {
+            if(hm.containsKey(s2.charAt(i)))
+            {
+                if(hm.get(s2.charAt(i))>1)
+                {
+                    hm.put(s2.charAt(i), hm.get(s2.charAt(i))-1);
+                }
+                else
+                {
+                    hm.remove(s2.charAt(i));
+                }
+            }
+
+            else
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+}
