@@ -1,0 +1,33 @@
+PROBLEM TITLE : Index of the First Occurrence of pattern in a text
+PROBLEM DIFFICULTY : Medium
+PLATFORM NAME : GeeksForGeeks
+PROBLEM LINK : https://www.geeksforgeeks.org/problems/index-of-the-first-occurrence-of-pattern-in-a-text/0
+
+SOLUTION : [Time Complexity: O(m*n), Space Complexity: O(1)]
+
+class Solution 
+{
+    public int findMatching(String text, String pat) 
+    {
+        int m = text.length();
+        int n = pat.length();
+        
+        if (n == 0) return 0;
+        if (m < n) return -1;
+        
+        for(int i=0; i<=m-n; i++)
+        {
+            int j = 0;
+            while(j<n && text.charAt(i+j)==pat.charAt(j))
+            {
+                j++;
+            }
+            if(j==n)
+            {
+                return i;
+            }
+        }
+        
+        return -1;
+    }
+}
