@@ -1,0 +1,48 @@
+PROBLEM TITLE : Ticket Counter
+PROBLEM DIFFICULTY : Easy
+PLATFORM NAME : GeeksForGeeks
+PROBLEM LINK : https://www.geeksforgeeks.org/problems/ticket-counter-2731/1
+
+SOLUTION : [Time Complexity: O(m*n), Space Complexity: O(1)]
+
+class Solution 
+{
+    public static int distributeTicket(int N, int K) 
+    {
+        int left = 1, right = N;
+        boolean forward = true;
+
+        while (left < right) 
+        {
+            if (forward) 
+            {
+                left += Math.min(K, right - left);
+            } 
+            else 
+            {
+                right -= Math.min(K, right - left);
+            }
+            forward = !forward;
+        }
+
+        return left; // Only one person remains
+    }
+}
+
+
+APPROACH:
+- **Initialize Two Pointers:**  
+  - `left = 1` (Start of the queue).  
+  - `right = N` (End of the queue).  
+  - `forward = true` (Direction flag, starts from the left).  
+
+- **Loop Until One Person Remains:**  
+  - If `forward == true`, move `left` forward by `min(K, right - left)`.  
+  - If `forward == false`, move `right` backward by `min(K, right - left)`.  
+  - Flip `forward` after each `K` removals.  
+
+- **Stop Condition:**  
+  - When `left >= right`, exit the loop.  
+
+- **Return the Last Remaining Person:**  
+  - The person at `left` is the final ticket holder.  
