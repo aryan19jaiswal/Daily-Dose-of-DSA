@@ -1,0 +1,35 @@
+PROBLEM TITLE : Stock span problem
+PROBLEM DIFFICULTY : Medium
+PLATFORM NAME : GeeksForGeeks
+PROBLEM LINK : https://www.geeksforgeeks.org/problems/stock-span-problem-1587115621/1
+
+SOLUTION : [Time Complexity: O(n), Space Complexity: O(n)]
+
+class Solution 
+{
+    public ArrayList<Integer> calculateSpan(int[] arr) 
+    {
+        ArrayList<Integer> ans = new ArrayList<>();
+        Stack<Integer> s = new Stack<>();
+        
+        for(int i=0; i<arr.length; i++)
+        {
+            while(!s.isEmpty() && arr[s.peek()] <= arr[i])
+            {
+                s.pop();
+            }
+            
+            if(s.isEmpty())
+            {
+                ans.add(i+1);
+            }
+            else
+            {
+                ans.add(i-s.peek());
+            }
+            
+            s.push(i);
+        }
+        return ans;
+    }
+}
