@@ -1,0 +1,33 @@
+PROBLEM TITLE : Missing in Array
+PROBLEM DIFFICULTY : Easy
+PLATFORM NAME : GeeksForGeeks
+PROBLEM LINK : https://www.geeksforgeeks.org/problems/smaller-on-left20360700/1
+
+SOLUTION : [Time Complexity: O(n), Space Complexity: O(n)]
+
+class Solution 
+{
+    int missingNumber(int arr[]) 
+    {
+        HashSet<Integer> hs = new HashSet<>();
+        
+        int max = arr.length+1;
+        int ans = -1;
+        
+        for(int i=0; i<arr.length; i++)
+        {
+            hs.add(arr[i]);
+        }
+        
+        for(int i=1; i<=max; i++)
+        {
+            if(!hs.contains(i))
+            {
+                ans = i;
+                break;
+            }
+        }
+        
+        return ans;
+  }
+}
