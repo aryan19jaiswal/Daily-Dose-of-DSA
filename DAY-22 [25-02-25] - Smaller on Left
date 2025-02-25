@@ -1,0 +1,29 @@
+PROBLEM TITLE : Smaller on Left
+PROBLEM DIFFICULTY : Medium
+PLATFORM NAME : GeeksForGeeks
+PROBLEM LINK : https://www.geeksforgeeks.org/problems/smaller-on-left20360700/1
+
+SOLUTION : [Time Complexity: O(n(logn)), Space Complexity: O(n)]
+
+class Complete 
+{
+    public static int[] Smallestonleft(int arr[], int n) 
+    {
+        int[] result = new int[n]; 
+        TreeSet<Integer> set = new TreeSet<>(); // storing previous elements in sorted order
+
+        for (int i = 0; i < n; i++) 
+        {
+            // Find the greatest element smaller than arr[i]
+            Integer lower = set.lower(arr[i]);
+            
+            // Store result in the output array (-1 if no such element exists)
+            result[i] = (lower != null) ? lower : -1;
+
+            // Insert the current element into the set
+            set.add(arr[i]);
+        }
+        
+        return result;
+    }
+}
