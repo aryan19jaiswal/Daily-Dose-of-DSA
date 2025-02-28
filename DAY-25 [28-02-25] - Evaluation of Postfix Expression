@@ -1,0 +1,65 @@
+PROBLEM TITLE : Evaluation of Postfix Expression
+PROBLEM DIFFICULTY : Medium
+PLATFORM NAME : GeeksForGeeks
+PROBLEM LINK : https://www.geeksforgeeks.org/problems/evaluation-of-postfix-expression1735/1
+
+SOLUTION : [Time Complexity: O(n), Space Complexity: O(n)]
+
+class Solution 
+{
+    public int evaluate(String[] arr) 
+    {
+        int i = 0;
+        
+        Stack<Integer> s = new Stack<>();
+        
+        while(i<arr.length)
+        {
+            String op = arr[i];
+            
+            switch (op) 
+            {
+                case "+":
+                    int a = s.peek();
+                    s.pop();
+                    int b = s.peek();
+                    s.pop();
+                    s.push(b+a);
+                    break;
+
+                    
+                case "-":
+                    int c = s.peek();
+                    s.pop();
+                    int d = s.peek();
+                    s.pop();
+                    s.push(d-c);
+                    break;
+                    
+                case "*":
+                    int e = s.peek();
+                    s.pop();
+                    int f = s.peek();
+                    s.pop();
+                    s.push(f*e);
+                    break;
+                    
+                case "/":
+                    int g = s.peek();
+                    s.pop();
+                    int h = s.peek();
+                    s.pop();
+                    s.push(h/g);
+                    break;
+                    
+                default:
+                    int x = Integer.parseInt(op);
+                    s.push(x);
+            }
+            
+            i++;
+        }
+        
+        return s.peek();
+    }
+}
