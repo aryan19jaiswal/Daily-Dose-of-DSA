@@ -1,0 +1,39 @@
+PROBLEM TITLE : Parenthesis Checker
+PROBLEM DIFFICULTY : Easy
+PLATFORM NAME : GeeksForGeeks
+PROBLEM LINK : https://www.geeksforgeeks.org/problems/parenthesis-checker2744/1
+
+SOLUTION : [Time Complexity: O(n), Space Complexity: O(n)]
+
+class Solution 
+{
+    static boolean isBalanced(String s) 
+    {
+        Stack<Character> st = new Stack<>();
+        
+        for(int i=0; i<s.length(); i++)
+        {
+            char ch = s.charAt(i);
+            
+            if(ch=='(' || ch=='{' || ch=='[')
+            {
+                st.push(ch);
+            }
+            else
+            {
+                if(st.isEmpty())
+                {
+                    return false;
+                }
+                
+                char top = st.pop();
+                if((ch==')' && top!='(') || (ch=='}' && top!='{') || (ch==']' && top!='['))
+                {
+                    return false;
+                }
+            }
+        }
+        
+        return st.isEmpty();
+    }
+}
