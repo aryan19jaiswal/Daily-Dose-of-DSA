@@ -1,0 +1,41 @@
+PROBLEM TITLE : Expression contains redundant bracket or not
+PROBLEM DIFFICULTY : Medium
+PLATFORM NAME : GeeksForGeeks
+PROBLEM LINK : https://www.geeksforgeeks.org/problems/expression-contains-redundant-bracket-or-not/1
+
+SOLUTION : [Time Complexity: O(n), Space Complexity: O(n)]
+
+class Solution 
+{
+    public static int checkRedundancy(String s) 
+    {
+        Stack<Character> st = new Stack<>();
+        
+        for(int i=0; i<s.length(); i++)
+        {
+            char ch = s.charAt(i);
+            
+            if(ch!=')')
+            {
+                st.push(ch);
+            }
+            else
+            {
+                int count = 0;
+                while(!st.isEmpty() && st.peek()!='(')
+                {
+                    st.pop();
+                    count++;
+                }
+                st.pop();
+                
+                if(count<=1)
+                {
+                    return 1;
+                }
+            }
+        }
+        return 0;
+    }
+}
+        
