@@ -1,0 +1,73 @@
+PROBLEM TITLE : Decode the string
+PROBLEM DIFFICULTY : Medium
+PLATFORM NAME : GeeksForGeeks
+PROBLEM LINK : https://www.geeksforgeeks.org/problems/decode-the-string2444/1
+
+SOLUTION : [Time Complexity: O(n*max_k), Space Complexity: O(n*max_k)]
+
+class Solution 
+{
+    static String decodeString(String s) 
+    {
+        Stack<Character> st = new Stack<>();
+        
+        for (char ch : s.toCharArray()) 
+        {
+            if (ch != ']') 
+            {
+                st.push(ch);
+            } 
+            else
+            {
+                // Extract the string inside the brackets
+                StringBuilder decodedString = new StringBuilder();
+                while (!st.isEmpty() && st.peek() != '[') 
+                {
+                    decodedString.insert(0, st.pop());
+                }
+                st.pop(); // Remove '['
+                
+                // Extract the number
+                StringBuilder numStr = new StringBuilder();
+                while (!st.isEmpty() && Character.isDigit(st.peek())) 
+                {
+                    numStr.insert(0, st.pop());
+                }
+                int repeatCount = Integer.parseInt(numStr.toString());
+                
+                // Repeat the decoded string and push back to stack
+                String repeatedStr = decodedString.toString().repeat(repeatCount);
+                for (char c : repeatedStr.toCharArray()) 
+                {
+                    st.push(c);
+                }
+            }
+        }
+        
+        // Build final result
+        StringBuilder result = new StringBuilder();
+        while (!st.isEmpty()) 
+        {
+            result.insert(0, st.pop());
+        }
+        
+        return result.toString();
+    }
+}
+
+
+Approach :
+
+1. Use a Stack (`st`) to process the encoded string character by character.  
+2. Push characters onto the stack until a closing bracket (`]`) is encountered.  
+3. When `]` is found:  
+   - Extract the substring inside brackets by popping characters until `'['` is found.  
+   - Remove `'['` from the stack.  
+4. Extract the repeat count (number before `[`):  
+   - Pop digits from the stack and construct the number.  
+5. Repeat the extracted string `repeatCount` times.  
+6. Push the expanded string character by character back into the stack.  
+7. After processing all characters, build the final result by popping elements from the stack in reverse order.  
+8. Return the decoded string.  
+
+📌 Key Idea: The stack stores characters in the correct order, ensuring proper handling of nested encodings like `"3[a2[c]]" → "accaccacc"`. 🚀
