@@ -1,0 +1,35 @@
+PROBLEM TITLE : Minimum Cost of ropes
+PROBLEM DIFFICULTY : Easy
+PLATFORM NAME : GeeksForGeeks
+PROBLEM LINK : https://www.geeksforgeeks.org/problems/minimum-cost-of-ropes-1587115620/1
+
+SOLUTION : [Time Complexity: O(n.logn), Space Complexity: O(n)]
+
+class Solution 
+{
+    public int minCost(int[] arr) 
+    {
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        
+        for(int i=0; i<arr.length; i++)
+        {
+            pq.add(arr[i]);
+        }
+        
+        int min_Cost = 0;
+        
+        while(pq.size()>1)
+        {
+            int a = pq.remove();
+            int b = pq.remove();
+            
+            int sum = a+b;
+            
+            min_Cost = min_Cost+sum;
+            
+            pq.add(sum);
+        }
+        
+        return min_Cost;
+    }
+}
