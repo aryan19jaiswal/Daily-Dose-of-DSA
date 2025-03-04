@@ -1,0 +1,35 @@
+PROBLEM TITLE : Indexes of Subarray Sum
+PROBLEM DIFFICULTY : Medium
+PLATFORM NAME : GeeksForGeeks
+PROBLEM LINK : https://www.geeksforgeeks.org/problems/subarray-with-given-sum-1587115621/1
+
+SOLUTION : [Time Complexity: O(n), Space Complexity: O(n)]
+
+class Solution 
+{
+    static ArrayList<Integer> subarraySum(int[] arr, int target) 
+    {
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        int sum = 0;
+
+        for (int i = 0; i < arr.length; i++) 
+        {
+            sum += arr[i];
+
+            if (sum == target)
+            {
+                return new ArrayList<>(Arrays.asList(1, i + 1)); // Convert 0-based to 1-based
+            }
+
+            if (hm.containsKey(sum - target))
+            {
+                return new ArrayList<>(Arrays.asList(hm.get(sum - target) + 2, i + 1)); // Convert to 1-based
+            }
+
+            // Store only the first occurrence of each prefix sum
+            hm.putIfAbsent(sum, i);
+        }
+
+        return new ArrayList<>(Arrays.asList(-1));
+    }
+}
