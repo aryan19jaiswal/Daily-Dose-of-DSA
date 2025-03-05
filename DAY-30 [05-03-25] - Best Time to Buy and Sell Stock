@@ -1,0 +1,22 @@
+PROBLEM TITLE : Best Time to Buy and Sell Stock
+PROBLEM DIFFICULTY : Easy
+PLATFORM NAME : LeetCode
+PROBLEM LINK : https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+
+SOLUTION : [Time Complexity: O(n), Space Complexity: O(1)]
+
+class Solution 
+{
+    public int maxProfit(int[] prices) 
+    {
+        int maxP = 0;
+        int cP = prices[0];
+
+        for(int i=1; i< prices.length; i++)
+        {
+            maxP = Math.max(maxP, prices[i] - cP);
+            cP = Math.min(cP, prices[i]);
+        }
+        return maxP;
+    }
+}
