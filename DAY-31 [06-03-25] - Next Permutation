@@ -1,0 +1,57 @@
+PROBLEM TITLE : Next Permutation
+PROBLEM DIFFICULTY : Medium
+PLATFORM NAME : LeetCode (31)
+PROBLEM LINK : https://leetcode.com/problems/next-permutation/description/
+
+SOLUTION : [Time Complexity: O(n), Space Complexity: O(1)]
+
+class Solution 
+{
+    public void nextPermutation(int[] nums) 
+    {
+        int pivot = -1;
+        
+        // Step 1: Find the rightmost pivot (nums[i] < nums[i+1])
+        for (int i = nums.length - 2; i >= 0; i--)
+        {
+            if (nums[i] < nums[i + 1]) 
+            {
+                pivot = i;
+                break;
+            }
+        }
+
+        if (pivot != -1) 
+        {
+            // Step 2: Find the next larger element to swap with pivot
+            int swapIndex = nums.length - 1;
+            while (nums[swapIndex] <= nums[pivot])
+            {
+                swapIndex--;
+            }
+            
+            // Step 3: Swap pivot and swapIndex
+            swap(nums, pivot, swapIndex);
+        }
+        
+        // Step 4: Reverse the right part of the array
+        reverse(nums, pivot + 1, nums.length - 1);
+    }
+
+    private void swap(int[] nums, int i, int j) 
+    {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+    private void reverse(int[] nums, int start, int end) 
+    {
+        while (start < end) 
+        {
+            swap(nums, start, end);
+            start++;
+            end--;
+        }
+    }
+}
