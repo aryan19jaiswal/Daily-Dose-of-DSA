@@ -1,0 +1,38 @@
+PROBLEM TITLE : Longest Subarray with Sum K
+PROBLEM DIFFICULTY : Medium
+PLATFORM NAME : GeeksForGeeks
+PROBLEM LINK : https://www.geeksforgeeks.org/problems/longest-sub-array-with-sum-k0809/1
+
+SOLUTION : [Time Complexity: O(n), Space Complexity: O(n)]
+
+class Solution 
+{
+    public int longestSubarray(int[] arr, int k)
+    {
+        int ans = 0;
+        int sum = 0;
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        
+        for(int i=0; i<arr.length; i++)
+        {
+            sum = sum + arr[i];
+            
+            if(sum==k)
+            {
+                ans = Math.max(ans, i+1);
+            }
+            
+            if(hm.containsKey(sum-k))
+            {
+                ans = Math.max(ans, i-hm.get(sum-k));
+            }
+            
+            if (!hm.containsKey(sum)) 
+            {
+                hm.put(sum, i);
+            }
+        }
+        
+        return ans;
+    }
+}
