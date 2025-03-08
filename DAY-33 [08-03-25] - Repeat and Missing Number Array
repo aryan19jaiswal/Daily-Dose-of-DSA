@@ -1,0 +1,47 @@
+PROBLEM TITLE : Repeat and Missing Number Array
+PROBLEM DIFFICULTY : Medium
+PLATFORM NAME : InterviewBit
+PROBLEM LINK : https://www.interviewbit.com/problems/repeat-and-missing-number-array/
+
+SOLUTION : [Time Complexity: O(n), Space Complexity: O(n)]
+
+class Solution 
+{
+    public ArrayList<Integer> repeatedNumber(final List<Integer> A) 
+    {
+        HashMap<Integer, Integer> hm = new HashMap<>();
+
+        for(int i = 0; i < A.size(); i++) 
+        {
+            hm.put(i + 1, 0);
+        }
+        
+        ArrayList<Integer> ans = new ArrayList<>(Arrays.asList(0, 0)); // Initialize with dummy values
+
+        for(int i = 0; i < A.size(); i++) 
+        {
+            if(hm.containsKey(A.get(i))) 
+            {
+                hm.put(A.get(i), hm.get(A.get(i)) + 1); // Fixed: +1 was misplaced
+            } 
+            else 
+            {
+                hm.put(A.get(i), 1);
+            }
+        }
+
+        for(int i = 0; i < A.size(); i++) 
+        {
+            if(hm.get(i + 1) > 1) 
+            {
+                ans.set(0, i + 1); // Fixed: Ensure ans has elements before setting values
+            }
+            if(hm.get(i + 1) == 0) 
+            {
+                ans.set(1, i + 1);
+            }
+        }
+
+        return ans;
+    }
+}
