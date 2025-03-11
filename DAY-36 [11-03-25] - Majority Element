@@ -1,0 +1,29 @@
+PROBLEM TITLE : Majority Element
+PROBLEM DIFFICULTY : Easy
+PLATFORM NAME : LeetCode (169)
+PROBLEM LINK : https://leetcode.com/problems/majority-element/description/
+
+SOLUTION : [Time Complexity: O(n), Space Complexity: O(1)]
+
+class Solution  [BOYER MOORE VOTING ALGORITHM]
+{
+    public int majorityElement(int[] nums) 
+    {
+        int candidate = nums[0], count = 1;
+
+        for (int i = 1; i < nums.length; i++) 
+        {
+            if (nums[i] == candidate)
+                count++;
+            else
+                count--;
+
+            if (count == 0) 
+            {
+                candidate = nums[i];
+                count = 1;
+            }
+        }
+        return candidate;
+    }
+}
