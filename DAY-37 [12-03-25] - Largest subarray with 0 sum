@@ -1,0 +1,41 @@
+PROBLEM TITLE : Largest subarray with 0 sum
+PROBLEM DIFFICULTY : Medium
+PLATFORM NAME : GeeksforGeeks
+PROBLEM LINK : https://www.geeksforgeeks.org/problems/largest-subarray-with-0-sum/1
+
+SOLUTION : [Time Complexity: O(n), Space Complexity: O(n)]
+
+class Solution 
+{
+    int maxLen(int arr[]) 
+    {
+        HashMap<Integer, Integer> hm = new HashMap<>();
+
+        int currSum = 0;
+        int ans = 0;
+
+        for (int i = 0; i < arr.length; i++) 
+        {
+            currSum += arr[i];
+
+            // If sum becomes 0, update ans
+            if (currSum == 0) 
+            {
+                ans = Math.max(ans, i + 1);
+            }
+
+            // If currSum has been seen before, update ans
+            if (hm.containsKey(currSum)) 
+            {
+                ans = Math.max(ans, i - hm.get(currSum));
+            } 
+            else 
+            {
+                // Store first occurrence of currSum
+                hm.put(currSum, i);
+            }
+        }
+
+        return ans;
+    }
+}
