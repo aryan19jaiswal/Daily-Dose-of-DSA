@@ -1,0 +1,95 @@
+PROBLEM TITLE : Trapping Rain Water
+PROBLEM DIFFICULTY : Hard
+PLATFORM NAME : LeetCode (42)
+PROBLEM LINK : https://leetcode.com/problems/trapping-rain-water/description/
+
+SOLUTION : 
+
+APPROACH-1 [Time Complexity: O(n), Space Complexity: O(n)]
+class Solution 
+{
+    public int trap(int[] height) 
+    {
+        int[] left = leftMax(height);
+        int[] right = rightMax(height);
+
+        int ans = 0;
+
+        for(int i=0; i<height.length; i++)
+        {
+            ans = ans + (Math.min(left[i], right[i])-height[i]);
+        }
+
+        return ans;
+    }
+
+    public int[] leftMax(int[] height)
+    {
+        int[] left = new int[height.length];
+        left[0] = height[0];
+
+        for(int i=1; i<height.length; i++)
+        {
+            left[i] = Math.max(height[i], left[i-1]); 
+        }
+
+        return left;
+    }
+
+    public int[] rightMax(int[] height)
+    {
+        int[] right = new int[height.length];
+        right[height.length-1] = height[height.length-1];
+
+        for(int i=height.length-2; i>=0; i--)
+        {
+            right[i] = Math.max(height[i], right[i+1]); 
+        }
+
+        return right;
+    }
+}
+
+
+
+APPROACH-2 [Time Complexity: O(n), Space Complexity: O(1)]
+class Solution 
+{
+    public int trap(int[] height) 
+    {
+        if (height == null || height.length == 0) 
+            return 0;
+
+        int left = 0, right = height.length - 1;  // Two pointers
+        int leftMax = 0, rightMax = 0;  // Track max height seen from left and right
+        int ans = 0;
+
+        while (left < right) 
+        {
+            if (height[left] < height[right])
+            {  
+                // If the left bar is smaller, process from the left
+                if (height[left] >= leftMax) {
+                    leftMax = height[left];  // Update leftMax
+                } else {
+                    ans += leftMax - height[left];  // Water trapped
+                }
+                left++;  // Move left pointer
+            } 
+            else 
+            {  
+                // If the right bar is smaller, process from the right
+                if (height[right] >= rightMax) 
+                {
+                    rightMax = height[right];  // Update rightMax
+                } 
+                else 
+                {
+                    ans += rightMax - height[right];  // Water trapped
+                }
+                right--;  // Move right pointer
+            }
+        }
+        return ans;
+    }
+}
