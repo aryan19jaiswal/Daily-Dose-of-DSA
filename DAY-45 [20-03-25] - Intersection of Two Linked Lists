@@ -1,0 +1,43 @@
+PROBLEM TITLE : Intersection of Two Linked Lists
+PROBLEM DIFFICULTY : Easy
+PLATFORM NAME : LeetCode (160)
+PROBLEM LINK : https://leetcode.com/problems/intersection-of-two-linked-lists/description/
+
+SOLUTION : [Time Complexity: O(n+m), Space Complexity: O(1)]
+
+class Solution 
+{
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) 
+    {
+        if (headA == null || headB == null) 
+        {
+            return null; // If any list is empty, no intersection is possible
+        }
+
+        ListNode a = headA;
+        ListNode b = headB;
+
+        while (a != b) 
+        {
+            if (a == null) 
+            {
+                a = headB; 
+            } 
+            else 
+            {
+                a = a.next;
+            }
+
+            if (b == null) 
+            {
+                b = headA; 
+            }
+            else 
+            {
+                b = b.next;
+            }
+        }
+
+        return a; 
+    }
+}
