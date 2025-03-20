@@ -1,0 +1,33 @@
+PROBLEM TITLE : Linked List Cycle
+PROBLEM DIFFICULTY : Easy
+PLATFORM NAME : LeetCode (141)
+PROBLEM LINK : https://leetcode.com/problems/linked-list-cycle/
+
+SOLUTION : [Time Complexity: O(n), Space Complexity: O(1)]
+
+class Solution 
+{
+    public boolean hasCycle(ListNode head) 
+    {
+        ListNode slow = head;
+        ListNode fast = head;
+
+        if(head==null || head.next==null)
+        {
+            return false;
+        }
+
+        while(fast!=null && fast.next!=null)
+        {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if(slow==fast)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
