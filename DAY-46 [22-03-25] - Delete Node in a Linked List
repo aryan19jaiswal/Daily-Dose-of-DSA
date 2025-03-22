@@ -1,0 +1,15 @@
+PROBLEM TITLE : Delete Node in a Linked List
+PROBLEM DIFFICULTY : Medium
+PLATFORM NAME : LeetCode (237)
+PROBLEM LINK : https://leetcode.com/problems/delete-node-in-a-linked-list/
+
+SOLUTION : [Time Complexity: O(1), Space Complexity: O(1)]
+
+class Solution 
+{
+    public void deleteNode(ListNode node) 
+    {
+        node.val = node.next.val;  
+        node.next = node.next.next; 
+    }
+}
