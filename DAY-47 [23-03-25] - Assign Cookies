@@ -1,0 +1,35 @@
+PROBLEM TITLE : Assign Cookies
+PROBLEM DIFFICULTY : Easy
+PLATFORM NAME : LeetCode (455)
+PROBLEM LINK : https://leetcode.com/problems/assign-cookies/description/
+
+SOLUTION : [Time Complexity: O(nlogn), Space Complexity: O(n)]
+
+class Solution 
+{
+    public int findContentChildren(int[] g, int[] s) 
+    {
+        Arrays.sort(g);
+        Arrays.sort(s);
+        int count = 0, j = 0; 
+
+        for (int greed : g) 
+        {
+            while (j < s.length && s[j] < greed) 
+            {
+                j++; // Skip smaller cookies
+            }
+            if (j < s.length) 
+            {
+                count++;
+                j++; // Assign cookie and move to next
+            } 
+            else 
+            {
+                break; // No more cookies left
+            }
+        }
+        return count;
+    }
+}
+
