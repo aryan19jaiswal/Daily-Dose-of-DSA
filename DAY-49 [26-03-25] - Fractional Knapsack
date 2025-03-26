@@ -1,0 +1,40 @@
+PROBLEM TITLE : Fractional Knapsack
+PROBLEM DIFFICULTY : Medium
+PLATFORM NAME : GeeksForGeeks
+PROBLEM LINK : https://www.geeksforgeeks.org/problems/fractional-knapsack-1587115620/1
+
+SOLUTION : [Time Complexity: O(nlogn), Space Complexity: O(n)]
+
+class Solution 
+{
+    double fractionalKnapsack(List<Integer> val, List<Integer> wt, int capacity) 
+    {
+        double[][] ratio = new double[val.size()][2];
+        
+        for(int i = 0; i < val.size(); i++) 
+        {  
+            ratio[i][0] = i;
+            ratio[i][1] = val.get(i) / (double) wt.get(i);  
+        }
+        
+        Arrays.sort(ratio, (a, b) -> Double.compare(b[1], a[1]));  
+        double ans = 0; 
+        for(int i = 0; i < ratio.length; i++) 
+        {  
+            int index = (int) ratio[i][0];
+            
+            if(capacity > wt.get(index)) 
+            {  
+                ans = ans + val.get(index);  
+                capacity = capacity - wt.get(index); 
+            } 
+            else 
+            {
+                ans = ans + (capacity * ratio[i][1]); 
+                capacity = 0;
+                break;
+            }
+        }
+        return ans;  
+    }
+}
